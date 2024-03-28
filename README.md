@@ -12,3 +12,18 @@ Currently, the tool is in development and is not yet ready for deployment.
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+### Roadmap
+
+- [ ] filter selection menu
+- [ ] overwrite protection
+- [ ] error handling
+- [ ] setup ci/cd
+- [ ] command line arguments
+- [ ] add tests
+- [ ] change output file name/directory
+- [ ] add global and community subdirectories
+- [ ] option to strip comments/emtpy lines
+- [ ] option to append to existing .gitignore file
+- [ ] select multiple templates/merge duplicates
+- [ ] user templates
