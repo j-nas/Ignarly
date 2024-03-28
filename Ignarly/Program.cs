@@ -1,13 +1,34 @@
 ﻿using Ignarly;
-using Octokit;
 
-var client = new GitHubClient(new ProductHeaderValue("Ignarly"));
-var templateList = await client.GitIgnore.GetAllGitIgnoreTemplates();
+var githubClient = new GithubApi();
+var templateList = await githubClient.GetGitIgnoreTemplates();
 
 var selection = Interactive.SelectTemplate(templateList);
-Console.WriteLine($"You have selected: {selection}");
 
-var gitignoreContent = await client.GitIgnore.GetGitIgnoreTemplate(selection);
+var gitignoreContent = await githubClient.GetGitIgnoreTemplate(selection);
 
-var fileWriter = new StreamWriter("test.gitignore");
-fileWriter.Write(gitignoreContent.Source);
+var ignoreFile = new GitignoreFile(null);
+if (ignoreFile.Content != string.Empty)
+{
+    switch (Interactive.FileExistsPrompt(ignoreFile.Path))
+    {
+        case FileExistsAction.Overwrite:
+            ignoreFile.Content = gitignoreContent;
+            ignoreFile.WriteToFile();
+            break;
+        case FileExistsAction.Append:
+            ignoreFile.AppendToFile(gitignoreContent);
+            break;
+        case FileExistsAction.Cancel:
+            Console.WriteLine("Operation cancelled");
+            Environment.Exit(0);
+            break;
+    }
+}
+else
+{
+    ignoreFile.Content = gitignoreContent;
+    ignoreFile.WriteToFile();
+}
+
+Environment.Exit(0);

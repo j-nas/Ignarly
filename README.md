@@ -16,8 +16,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ### Roadmap
 
 - [x] filter selection menu
-- [ ] overwrite protection
-- [ ] error handling
+- [x] overwrite protection
+- [x] error handling
 - [ ] setup ci/cd
 - [ ] command line arguments
 - [ ] add tests

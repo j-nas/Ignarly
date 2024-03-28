@@ -2,11 +2,11 @@
 
 namespace Ignarly;
 
-public static class Interactive
+public static partial class Interactive
 {
-    static public string SelectTemplate(IEnumerable<string> templateList)
+    public static string SelectTemplate(IEnumerable<string> templateList)
     {
-        return AnsiConsole.Prompt(
+        var selection = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 .AddChoices(templateList)
                 .Title("Select a .gitignore template")
@@ -14,5 +14,22 @@ public static class Interactive
                 .PageSize(10)
                 .MoreChoicesText("[grey](Move up and down to reveal more choices)[/]")
         );
+        Console.WriteLine($"You have selected: {selection}");
+        return selection;
+    }
+
+    public static FileExistsAction FileExistsPrompt(string path)
+    {
+        AnsiConsole.MarkupLine($"[red]File {path} already exists[/]");
+        AnsiConsole.MarkupLine("[yellow]Do you want to (o)overwrite, (a)append or (c)cancel?[/]");
+        var actions = Console.ReadKey();
+
+        return actions.Key switch
+        {
+            ConsoleKey.O => FileExistsAction.Overwrite,
+            ConsoleKey.A => FileExistsAction.Append,
+            ConsoleKey.C => FileExistsAction.Cancel,
+            _ => FileExistsAction.Cancel,
+        };
     }
 }
