@@ -23,6 +23,32 @@ public class GitignoreFile
         }
     }
 
+    public void SetContent(string content)
+    {
+        if (Content != string.Empty)
+        {
+            switch (Interactive.FileExistsPrompt(Path))
+            {
+                case FileExistsAction.Overwrite:
+                    Content = content;
+                    WriteToFile();
+                    break;
+                case FileExistsAction.Append:
+                    Content += content;
+                    WriteToFile();
+                    break;
+                case FileExistsAction.Cancel:
+                    CancelOperation();
+                    break;
+            }
+        }
+        else
+        {
+            Content = content;
+            WriteToFile();
+        }
+    }
+
     public void WriteToFile()
     {
         using (var fileWriter = new StreamWriter(Path))
@@ -30,12 +56,12 @@ public class GitignoreFile
             fileWriter.Write(Content);
         }
 
-        Console.WriteLine($"File written to {Path}");
+        Console.WriteLine($"Gitignore rules written to {Path}");
     }
 
-    public void AppendToFile(string content)
+    public static void CancelOperation()
     {
-        Content += content;
-        WriteToFile();
+        Console.WriteLine("Operation cancelled, no changes made to .gitignore file");
+        Environment.Exit(420);
     }
 }

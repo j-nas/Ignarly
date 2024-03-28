@@ -1,4 +1,5 @@
-﻿using Spectre.Console;
+﻿using System.Security.Cryptography;
+using Spectre.Console;
 
 namespace Ignarly;
 
@@ -21,15 +22,17 @@ public static partial class Interactive
     public static FileExistsAction FileExistsPrompt(string path)
     {
         AnsiConsole.MarkupLine($"[red]File {path} already exists[/]");
-        AnsiConsole.MarkupLine("[yellow]Do you want to (o)overwrite, (a)append or (c)cancel?[/]");
-        var actions = Console.ReadKey();
+        AnsiConsole.MarkupLine(
+            "[yellow]Do you want to (o)overwrite, (a)append or (c or any key)cancel?[/]"
+        );
+        var actions = Console.ReadKey(true);
 
         return actions.Key switch
         {
             ConsoleKey.O => FileExistsAction.Overwrite,
             ConsoleKey.A => FileExistsAction.Append,
             ConsoleKey.C => FileExistsAction.Cancel,
-            _ => FileExistsAction.Cancel,
+            _ => FileExistsAction.Cancel
         };
     }
 }
