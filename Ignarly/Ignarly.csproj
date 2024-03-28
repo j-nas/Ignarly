@@ -7,6 +7,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Octokit" Version="10.0.0" />
+    <PackageReference Include="roslynator.analyzers" Version="4.12.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Spectre.Console" Version="0.48.1-preview.0.36" />
     <PackageReference Include="Spectre.Console.Cli" Version="0.48.0" />
   </ItemGroup>
