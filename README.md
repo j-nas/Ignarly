@@ -15,7 +15,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ### Roadmap
 
-- [ ] filter selection menu
+- [x] filter selection menu
 - [ ] overwrite protection
 - [ ] error handling
 - [ ] setup ci/cd
@@ -23,7 +23,8 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - [ ] add tests
 - [ ] change output file name/directory
 - [ ] add global and community subdirectories
-- [ ] option to strip comments/emtpy lines
+- [ ] option to strip comments/empty lines
 - [ ] option to append to existing .gitignore file
 - [ ] select multiple templates/merge duplicates
 - [ ] user templates
+- [ ] fuzzy search for command line arguments
