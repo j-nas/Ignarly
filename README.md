@@ -2,12 +2,10 @@
 
 A simple command line tool to quickly generate a .gitignore file, using Github's gitignore templates.
 
-Currently, the tool is in development and is not yet ready for deployment.
-
 ## Installation and usage
 
-1. Clone the repository
-2. Run `dotnet run` in the project directory
+1. `dotnet tool install -g Ignarly`
+2. `ignarly`
 
 ## License
 
@@ -18,7 +16,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 - [x] filter selection menu
 - [x] overwrite protection
 - [x] error handling
-- [ ] setup ci/cd
+- [ ] standalone package for homebrew/AUR/apt etc.
 - [ ] command line arguments
 - [ ] add tests
 - [ ] change output file name/directory
